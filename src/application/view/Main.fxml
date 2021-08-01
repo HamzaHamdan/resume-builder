@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="851.0" style="-fx-background-color: D9DEE3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+   <children>
+      <AnchorPane prefHeight="29.0" prefWidth="851.0" style="-fx-background-color: rgb(60,61,63);" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="personalInfoButton" layoutX="10.0" layoutY="6.0" maxWidth="126.0" minWidth="88.0" mnemonicParsing="false" onAction="#personalInfoButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Personal Info" textAlignment="CENTER" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="educationButton" layoutX="98.0" layoutY="6.0" maxWidth="126.0" minWidth="61.0" mnemonicParsing="false" onAction="#educationButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Education" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="expreinceButton" layoutX="186.0" layoutY="6.0" maxWidth="126.0" minWidth="78.0" mnemonicParsing="false" onAction="#experienceButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Experience" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="closeButton" accessibleText="Close" layoutX="806.0" layoutY="6.0" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#closeButtonHandler" prefWidth="35.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="X" textAlignment="CENTER" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="minimizeButton" accessibleText="Minimize" layoutX="771.0" layoutY="6.0" maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#minimizeButtonHandler" prefHeight="25.0" prefWidth="35.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="-" textAlignment="CENTER" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="templatesButton" layoutX="450.0" layoutY="6.0" maxWidth="126.0" minWidth="78.0" mnemonicParsing="false" onAction="#templatesButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Template">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="skillsButton" layoutX="274.0" layoutY="6.0" maxWidth="126.0" minWidth="61.0" mnemonicParsing="false" onAction="#skillsButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Skills">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="summaryButton" layoutX="362.0" layoutY="6.0" maxWidth="126.0" minWidth="78.0" mnemonicParsing="false" onAction="#summaryButtonHandler" prefHeight="33.0" prefWidth="88.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Summary" AnchorPane.topAnchor="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mainContainer" layoutY="45.0" prefHeight="548.0" prefWidth="851.0">
+         <children>
+            <Label layoutX="309.0" layoutY="313.0" text="Resume Builder">
+               <font>
+                  <Font size="34.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="351.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../resumebuilder/resources/logo/resume-png-clipart-png-mart-resume-builder-png-512_512.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</AnchorPane>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="548.0" prefWidth="851.0" style="-fx-background-color: D9DEE3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TemplatesController">
+   <children>
+      <Label layoutX="348.0" layoutY="14.0" text="Templates">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="templateAImageView" fitHeight="215.0" fitWidth="200.0" layoutX="167.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/logo/templateA.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="templateBImageView" fitHeight="215.0" fitWidth="200.0" layoutX="503.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/logo/templateB.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
