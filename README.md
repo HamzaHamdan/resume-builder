@@ -22,14 +22,14 @@ Resume Builder is a desktop application which you can use to build your resume.
 
 ![Personal Info Screen](./readme-screenshots/personal-info.png)
 
-![Education Screen](./readme-screenshots/education.png)
+![Education Screen](./readme-screenshots/education.PNG)
 
-![Experience Screen](./readme-screenshots/experience.png)
+![Experience Screen](./readme-screenshots/experience.PNG)
 
-![Skills Screen](./readme-screenshots/skills.png)
+![Skills Screen](./readme-screenshots/skills.PNG)
 
-![Summary Screen](./readme-screenshots/summary.png)
+![Summary Screen](./readme-screenshots/summary.PNG)
 
-![Templates Screen](./readme-screenshots/templates.png)
+![Templates Screen](./readme-screenshots/templates.PNG)
 
-![Generated Resume](./readme-screenshots/resume-pdf.png)
+![Generated Resume](./readme-screenshots/resume-pdf.PNG)
