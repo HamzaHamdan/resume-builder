@@ -1,10 +1,7 @@
 package application.pdf;
 
 import java.io.FileOutputStream;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,15 +10,13 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 
-import application.db.ConnectionFactory;
 import application.model.Education;
 import application.model.Experience;
 import application.model.PersonalInfo;
 import application.model.Skill;
 import application.model.Summary;
-import javafx.scene.control.Button;
 
-public class PdfGenerator {
+public class TemplateBPdfGenerator extends PdfGeneratorDao{
 
 	private String schoolDatesPattern = "MM/dd/yyyy";
 	private SimpleDateFormat schoolDatesFormatter = new SimpleDateFormat(schoolDatesPattern);
@@ -34,7 +29,7 @@ public class PdfGenerator {
 		String emailAddress = null;
 		String physicalAddress = null;
 		String phoneNumber = null;
-		byte[] imageDate = null;
+		//byte[] imageDate = null;
 		Chunk linebreak = new Chunk(new LineSeparator(1f, 100f, BaseColor.BLACK, Element.ALIGN_CENTER, -1));
 
 		/*
@@ -50,72 +45,34 @@ public class PdfGenerator {
 		PdfWriter.getInstance(document, new FileOutputStream(fileName));
 
 		document.open();
-
-		Connection connection = ConnectionFactory.getConnection();
-
-		// retrieve personal info from the database
-		String query = "select first_name, last_name, email_address, phone_number, physical_address, image_data from personalinfo";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-
-		while (rs.next()) {
-			PersonalInfo info = new PersonalInfo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-					rs.getString(5));
-
-			firstName = info.getFirstName();
-			lastName = info.getLastName();
-			emailAddress = info.getEmailAddress();
-			physicalAddress = info.getPhysicalAddress();
-			phoneNumber = info.getPhoneNumber();
-			imageDate = rs.getBytes(6);
-		}
+		
+		// retrieve personal info
+		PersonalInfo info = getPersonalInfoRecord();
+		
+		firstName = info.getFirstName();
+		lastName = info.getLastName();
+		emailAddress = info.getEmailAddress();
+		physicalAddress = info.getPhysicalAddress();
+		phoneNumber = info.getPhoneNumber();
+		//imageDate = getPictureBytesRecord();
 
 		// retrieve education records from the database
-		query = "select id, school_name, from_Date, to_date, degree_type, degree_name, description from education";
-		stmt = connection.createStatement();
-		rs = stmt.executeQuery(query);
-		ArrayList<Education> educationList = new ArrayList<Education>();
-		while (rs.next()) {
-			Education education = new Education(rs.getLong(1), rs.getString(2), rs.getDate(3), rs.getDate(4),
-					rs.getString(5), rs.getString(6), rs.getString(7), new Button(), new Button());
-			educationList.add(education);
-		}
+		ArrayList<Education> educationList = getEducationRecords();
 
 		// retrieve experience records from the database
-		query = "select id, company_name, from_Date, to_date, position, description from experience";
-		stmt = connection.createStatement();
-		rs = stmt.executeQuery(query);
-		ArrayList<Experience> experienceList = new ArrayList<Experience>();
-		while (rs.next()) {
-			Experience experience = new Experience(rs.getLong(1), rs.getString(2), rs.getDate(3), rs.getDate(4),
-					rs.getString(5), rs.getString(6), new Button(), new Button());
-			experienceList.add(experience);
-		}
-
+		ArrayList<Experience> experienceList = getExperienceRecords();
+		
 		// retrieve summary details
-		query = "select summary from summary";
-		stmt = connection.createStatement();
-		rs = stmt.executeQuery(query);
-		Summary summary = new Summary();
-		while (rs.next()) {
-			summary.setSummary(rs.getString(1));
-		}
+		Summary summary = getSummaryRecord();
 
 		// retrieve skills records from the database
-		query = "select id, skill from skills";
-		stmt = connection.createStatement();
-		rs = stmt.executeQuery(query);
-		ArrayList<Skill> skillsList = new ArrayList<Skill>();
-		while (rs.next()) {
-			Skill skill = new Skill(rs.getLong(1), rs.getString(2), new Button(), new Button());
-			skillsList.add(skill);
-		}
+		ArrayList<Skill> skillsList = getSkillsRecords();
 
 		// create an image object and show image in the document
-		Image image = Image.getInstance(imageDate);
-		image.scaleToFit(80, 80);
-		image.setAbsolutePosition(496f, 670f);
-		document.add(image);
+		//Image image = Image.getInstance(imageDate);
+		//image.scaleToFit(80, 80);
+		//image.setAbsolutePosition(496f, 670f);
+		//document.add(image);
 
 		// print empty line in the document
 		document.add(new Paragraph(Chunk.NEWLINE));
@@ -321,7 +278,7 @@ public class PdfGenerator {
 		String datePattern = "MM-dd-yyyy";
 		SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
 		String formattedDate = dateFormat.format(new Date());
-		return "resume-" + formattedDate + ".pdf";
+		return "resume-b-" + formattedDate + ".pdf";
 	}
 
 }

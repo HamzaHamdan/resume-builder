@@ -1,7 +1,8 @@
 package application.controller;
 
 import application.extras.EnhancedAlert;
-import application.pdf.PdfGenerator;
+import application.pdf.TemplateAPdfGenerator;
+import application.pdf.TemplateBPdfGenerator;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -18,7 +19,7 @@ public class TemplatesController extends EnhancedAlert{
 		templateAImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				PdfGenerator generator = new PdfGenerator();
+				TemplateAPdfGenerator generator = new TemplateAPdfGenerator();
 				try {
 					String resumeFileName = generator.generatePdfFile();
 					showAlertWindow("Your resume was created successfully: " + resumeFileName,625, 132);
@@ -54,6 +55,15 @@ public class TemplatesController extends EnhancedAlert{
 		templateBImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				TemplateBPdfGenerator generator = new TemplateBPdfGenerator();
+				try {
+					String resumeFileName = generator.generatePdfFile();
+					showAlertWindow("Your resume was created successfully: " + resumeFileName,625, 132);
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("ERROR: issue while generating your resume!!");
+				}
+
 				event.consume();
 			}
 		});
