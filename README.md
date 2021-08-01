@@ -4,7 +4,7 @@
 Resume Builder is a desktop application which you can use to build your resume.
 
 ## To clone and run this project:
-* Run the command git@github.com:HamzaHamdan/resume-builder.git
+* Run the command `git@github.com:HamzaHamdan/resume-builder.git`
 * Open the project in eclipse
 * Right click the project
 * Run As > Run Configurations
