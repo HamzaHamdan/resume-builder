@@ -16,8 +16,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="./external_jars/sqlite-jdbc-3.7.2.jar"/>
-	<classpathentry kind="lib" path="./external_jars/fontawesomefx-8.9.jar"/>
-	<classpathentry kind="lib" path="./external_jars/itextpdf-5.1.0.jar"/>
+	<classpathentry kind="lib" path="external_jars/sqlite-jdbc-3.7.2.jar"/>
+	<classpathentry kind="lib" path="external_jars/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="external_jars/itextpdf-5.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
