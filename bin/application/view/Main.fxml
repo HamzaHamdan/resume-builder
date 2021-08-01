@@ -70,7 +70,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="351.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../resumebuilder/resources/logo/resume-png-clipart-png-mart-resume-builder-png-512_512.png" />
+                  <Image url="@../../../resources/logo/resume-builder-logo.png" />
                </image>
             </ImageView>
          </children>
