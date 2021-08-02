@@ -14,7 +14,7 @@
          </font>
       </Label>
       <Button fx:id="saveSummaryButton" layoutX="304.0" layoutY="342.0" mnemonicParsing="false" onAction="#saveSummaryButtonHandler" prefHeight="33.0" prefWidth="102.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Save" />
-      <TextArea fx:id="summaryField" layoutX="109.0" layoutY="97.0" prefHeight="200.0" prefWidth="634.0" wrapText="true" />
+      <TextArea fx:id="summaryField" layoutX="109.0" layoutY="97.0" prefHeight="200.0" prefWidth="634.0" promptText="required" wrapText="true" />
       <Button fx:id="cancelSummaryButton" layoutX="446.0" layoutY="342.0" mnemonicParsing="false" onAction="#cancelSummaryButtonHandler" prefHeight="33.0" prefWidth="102.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Cancel" />
    </children>
 </AnchorPane>

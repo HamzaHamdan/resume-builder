@@ -22,7 +22,11 @@ public class TemplatesController extends EnhancedAlert{
 				TemplateAPdfGenerator generator = new TemplateAPdfGenerator();
 				try {
 					String resumeFileName = generator.generatePdfFile();
-					showAlertWindow("Your resume was created successfully: " + resumeFileName,625, 132);
+					if(resumeFileName != null) {
+						showAlertWindow("Your resume was created successfully: " + resumeFileName, "info", 625, 132);
+					}else {
+						showAlertWindow("Error while creating your resume. Make sure to fill all fields in all pages.", "error", 625, 132);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("ERROR: issue while generating your resume!!");
@@ -58,7 +62,11 @@ public class TemplatesController extends EnhancedAlert{
 				TemplateBPdfGenerator generator = new TemplateBPdfGenerator();
 				try {
 					String resumeFileName = generator.generatePdfFile();
-					showAlertWindow("Your resume was created successfully: " + resumeFileName,625, 132);
+					if(resumeFileName != null) {
+						showAlertWindow("Your resume was created successfully: " + resumeFileName, "info", 625, 132);
+					}else {
+						showAlertWindow("Error while creating your resume. Make sure to fill all fields in all pages.", "error", 625, 132);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("ERROR: issue while generating your resume!!");

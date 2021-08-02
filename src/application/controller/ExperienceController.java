@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import application.db.ConnectionFactory;
+import application.extras.EnhancedAlert;
 import application.model.Experience;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -29,7 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-public class ExperienceController {
+public class ExperienceController extends EnhancedAlert{
 	
 	public static final int ITEMS_PER_PAGE = 4;
 	
@@ -199,6 +200,14 @@ public class ExperienceController {
 	
 	public void addExperienceButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
+		
+		if(companyNameField.getText().isBlank() || experienceFromDateField.getValue() == null || 
+				experienceToDateField.getValue() == null|| positionField.getText().isBlank()
+				|| experienceDescField.getText().isBlank()) {
+			showAlertWindow("Make sure to fill all fields!", "error",420, 132);
+			return;
+		}
+		
 		if (hiddenID.getText().equalsIgnoreCase("")) {
 			if (connection != null) {
 				String statement = "insert into experience (company_name, from_Date, to_date, position, description) "

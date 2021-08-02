@@ -55,13 +55,13 @@
             <Label text="To Date" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="92.0" text="Degree" GridPane.columnIndex="3" />
             <Label text="Description" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="schoolNameField" GridPane.columnIndex="1" />
-            <DatePicker fx:id="educationFromDateField" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="educationToDateField" prefHeight="25.0" prefWidth="265.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="schoolNameField" promptText="required" GridPane.columnIndex="1" />
+            <DatePicker fx:id="educationFromDateField" prefHeight="25.0" prefWidth="264.0" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="educationToDateField" prefHeight="25.0" prefWidth="265.0" promptText="required" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <ComboBox fx:id="degreeTypeCombo" prefHeight="25.0" prefWidth="276.0" GridPane.columnIndex="4" />
-            <TextArea fx:id="educationDescField" prefHeight="37.0" prefWidth="322.0" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextArea fx:id="educationDescField" prefHeight="37.0" prefWidth="322.0" promptText="required" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Label text="Field of Study" GridPane.rowIndex="2" />
-            <TextField fx:id="degreeNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="degreeNameField" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label fx:id="hiddenID" layoutX="54.0" layoutY="302.0" text="hiddenID" visible="false" />

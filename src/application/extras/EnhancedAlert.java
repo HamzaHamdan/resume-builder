@@ -1,20 +1,15 @@
 package application.extras;
 
 import application.controller.AlertController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class EnhancedAlert {
-	
-	@FXML
-	private Label alertText;
 
-	public void showAlertWindow(String str, int width, int height) {
+	public void showAlertWindow(String str, String msgType, int width, int height) {
 
 		try {
 			
@@ -30,7 +25,7 @@ public class EnhancedAlert {
 			alertWindow.setScene(alertScene);
 			
 			AlertController controller = loader.getController();
-			controller.initData(str);
+			controller.initData(str, msgType);
 			
 			alertWindow.show();
 

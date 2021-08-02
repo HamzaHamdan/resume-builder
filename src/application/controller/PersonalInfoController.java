@@ -196,6 +196,12 @@ public class PersonalInfoController extends EnhancedAlert{
 		ImageIO.write(bImage, "png", s);
 		byte[] res = s.toByteArray();
 		s.close();
+		
+		if(info.getFirstName().isBlank() || info.getLastName().isBlank() || info.getEmailAddress().isBlank()|| info.getPhoneNumber().isBlank()
+				|| info.getPhysicalAddress().isBlank()) {
+			showAlertWindow("Make sure to fill all fields!", "error",420, 132);
+			return;
+		}
 
 		Connection connection = null;
 		Statement stmt = null;
@@ -247,7 +253,7 @@ public class PersonalInfoController extends EnhancedAlert{
 				}
 			}
 			
-			showAlertWindow("Personal Information was updated successfully!",420, 132);
+			showAlertWindow("Personal Information was updated successfully!", "info",420, 132);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

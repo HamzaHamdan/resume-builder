@@ -73,6 +73,11 @@
                   <Image url="@../../../resources/logo/resume-builder-logo.png" />
                </image>
             </ImageView>
+            <Label layoutX="239.0" layoutY="370.0" lineSpacing="2.0" prefHeight="71.0" prefWidth="373.0" text="* Fill in your personal info., education history, experience history, skills and a summary, then go to the templates page and select the resume template of your preference." textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import application.db.ConnectionFactory;
+import application.extras.EnhancedAlert;
 import application.model.Skill;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -24,7 +25,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class SkillsController {
+public class SkillsController extends EnhancedAlert{
 	
 	public static final int ITEMS_PER_PAGE = 4;
 	
@@ -156,6 +157,12 @@ public class SkillsController {
 	
 	public void addSkillButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
+		
+		if(skillDescField.getText().isBlank()) {
+			showAlertWindow("Make sure to fill all fields!", "error",420, 132);
+			return;
+		}
+		
 		if (hiddenID.getText().equalsIgnoreCase("")) {
 			if (connection != null) {
 				String statement = "insert into skills (skill) "

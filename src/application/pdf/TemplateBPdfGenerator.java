@@ -49,6 +49,10 @@ public class TemplateBPdfGenerator extends PdfGeneratorDao{
 		// retrieve personal info
 		PersonalInfo info = getPersonalInfoRecord();
 		
+		if(info == null) {
+			return null;
+		}
+		
 		firstName = info.getFirstName();
 		lastName = info.getLastName();
 		emailAddress = info.getEmailAddress();
@@ -58,15 +62,31 @@ public class TemplateBPdfGenerator extends PdfGeneratorDao{
 
 		// retrieve education records from the database
 		ArrayList<Education> educationList = getEducationRecords();
+		
+		if(educationList.isEmpty()) {
+			return null;
+		}
 
 		// retrieve experience records from the database
 		ArrayList<Experience> experienceList = getExperienceRecords();
 		
+		if(experienceList.isEmpty()) {
+			return null;
+		}
+		
 		// retrieve summary details
 		Summary summary = getSummaryRecord();
+		
+		if(summary.getSummary().isBlank()) {
+			return null;
+		}
 
 		// retrieve skills records from the database
 		ArrayList<Skill> skillsList = getSkillsRecords();
+		
+		if(skillsList.isEmpty()) {
+			return null;
+		}
 
 		// create an image object and show image in the document
 		//Image image = Image.getInstance(imageDate);

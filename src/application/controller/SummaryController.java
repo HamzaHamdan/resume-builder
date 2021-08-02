@@ -77,7 +77,7 @@ public class SummaryController extends EnhancedAlert{
 					pstmt.executeUpdate();
 				}
 				
-				showAlertWindow("Summary was updated successfully!", 380, 132);
+				showAlertWindow("Summary was updated successfully!", "info", 380, 132);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

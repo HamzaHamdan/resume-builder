@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import application.db.ConnectionFactory;
+import application.extras.EnhancedAlert;
 import application.model.Education;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -30,7 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-public class EducationController {
+public class EducationController extends EnhancedAlert{
 	
 	ObservableList<String> degreeTypeList = FXCollections.observableArrayList("Bachelor's Degree", "Master's Degree", "Training");
 	
@@ -217,6 +218,14 @@ public class EducationController {
 	
 	public void addEducationButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
+		
+		if(schoolNameField.getText().isBlank() || educationFromDateField.getValue() == null || 
+				educationToDateField.getValue() == null|| degreeNameField.getText().isBlank()
+				|| educationDescField.getText().isBlank()) {
+			showAlertWindow("Make sure to fill all fields!", "error",420, 132);
+			return;
+		}
+		
 		if (hiddenID.getText().equalsIgnoreCase("")) {
 			if (connection != null) {
 				String statement = "insert into education (school_name, from_Date, to_date, degree_type, degree_name, description) "

@@ -35,14 +35,14 @@
          <children>
             <Label text="First Name" />
             <Label text="Last Name" GridPane.rowIndex="1" />
-            <TextField fx:id="firstNameField" GridPane.columnIndex="1" />
-            <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="firstNameField" promptText="required" GridPane.columnIndex="1" />
+            <TextField fx:id="lastNameField" prefHeight="25.0" prefWidth="75.0" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Phone Number" GridPane.rowIndex="2" />
             <Label text="Email Address" GridPane.rowIndex="3" />
             <Label text="Physical Address" GridPane.rowIndex="4" />
-            <TextField fx:id="phoneNumberField" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="emailAddressField" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="physicalAddressField" prefHeight="25.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="phoneNumberField" prefHeight="25.0" prefWidth="75.0" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailAddressField" prefHeight="25.0" prefWidth="75.0" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="physicalAddressField" prefHeight="25.0" prefWidth="75.0" promptText="required" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Button fx:id="cancelPersonalInfoButton" layoutX="483.0" layoutY="346.0" mnemonicParsing="false" onAction="#cancelPersonalInfoButtonHandler" prefHeight="33.0" prefWidth="102.0" styleClass="buttons" stylesheets="@../../../resources/style/application.css" text="Cancel" />
