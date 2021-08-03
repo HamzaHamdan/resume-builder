@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Summary.fxml view
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,9 +26,15 @@ import javafx.scene.control.TextArea;
 
 public class SummaryController extends EnhancedAlert{
 	
+	/**
+	 * JavaFX TextArea object
+	 */
 	@FXML
 	private TextArea summaryField;
 
+	/**
+	 * initialize method loads initial date for the summary view
+	 */
 	@FXML
 	public void initialize() {
 
@@ -55,6 +72,11 @@ public class SummaryController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * saveSummaryButtonHandler method saves changes to 
+	 * already existing summary records or creates new one
+	 * @param event button events object
+	 */
 	public void saveSummaryButtonHandler(ActionEvent event) {
 		Connection connection = null;
 		Statement stmt = null;
@@ -105,6 +127,9 @@ public class SummaryController extends EnhancedAlert{
 			}
 	}
 	
+	/**
+	 * cancelSummaryButtonHandler method reloads the summary view
+	 */
 	public void cancelSummaryButtonHandler() {
 		initialize();
 	}

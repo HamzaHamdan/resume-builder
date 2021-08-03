@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for PersonalInfo.fxml view
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,7 +33,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -35,21 +45,40 @@ import javafx.stage.Stage;
 
 public class PersonalInfoController extends EnhancedAlert{
 
+	/**
+	 * JavaFX Button object
+	 */
 	@FXML
 	private Button savePersonalInfoButton, cancelPersonalInfoButton;
 
+	/**
+	 * JavaFX ImageView object
+	 */
 	@FXML
 	private ImageView avatarImageViewer;
 
+	/**
+	 * JavaFX TextField object
+	 */
 	@FXML
 	private TextField firstNameField, lastNameField, emailAddressField, physicalAddressField, phoneNumberField;
 
+	/**
+	 * JavaFX AnchorPane object
+	 */
 	@FXML
 	private AnchorPane mainContainer;
 
+	/**
+	 * JavaFX GridPane object
+	 */
 	@FXML
 	private GridPane personalInfoGrid;
 
+	/**
+	 * initialize method loads personal info and user image
+	 * from the database when page is loaded
+	 */
 	@FXML
 	public void initialize() {
 		Connection connection = null;
@@ -105,6 +134,11 @@ public class PersonalInfoController extends EnhancedAlert{
 					FileChooser fileChooser = new FileChooser();
 					fileChooser.setTitle("Open Image File");
 					File selectedFile = fileChooser.showOpenDialog((Stage) avatarImageViewer.getScene().getWindow());
+					
+					if(selectedFile == null) {
+						return;
+					}
+					
 					Image image = new Image(new FileInputStream(selectedFile));
 					avatarImageViewer.setImage(image);
 				} catch (FileNotFoundException e) {
@@ -115,74 +149,11 @@ public class PersonalInfoController extends EnhancedAlert{
 		});
 	}
 
-	public void personalInfoButtonHandler(ActionEvent event) {
-		try {
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("../view/PersonalInfo.fxml"));
-
-			Connection connection = null;
-			String query = "select first_name, last_name, email_address, phone_number, physical_address, image_data from personalinfo";
-			Statement stmt = null;
-			ResultSet rs = null;
-			try {
-				connection = ConnectionFactory.getConnection();
-				stmt = connection.createStatement();
-				rs = stmt.executeQuery(query);
-
-				while (rs.next()) {
-					PersonalInfo info = new PersonalInfo(rs.getString(1), rs.getString(2), rs.getString(3),
-							rs.getString(4), rs.getString(5));
-
-					TextField firstName = (TextField) root.lookup("#firstNameField");
-					firstName.setText(info.getFirstName());
-
-					TextField lastName = (TextField) root.lookup("#lastNameField");
-					lastName.setText(info.getLastName());
-
-					TextField emailAddress = (TextField) root.lookup("#emailAddressField");
-					emailAddress.setText(info.getEmailAddress());
-
-					TextField physicalAddress = (TextField) root.lookup("#physicalAddressField");
-					physicalAddress.setText(info.getPhysicalAddress());
-
-					TextField phoneNumber = (TextField) root.lookup("#phoneNumberField");
-					phoneNumber.setText(info.getPhoneNumber());
-
-					Image img = new Image(new ByteArrayInputStream(rs.getBytes(6)));
-
-					ImageView imageView = (ImageView) root.lookup("#avatarImageViewer");
-					imageView.setImage(img);
-
-					mainContainer.getChildren().setAll(root);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				if (rs != null) {
-					try {
-						rs.close();
-					} catch (SQLException e) {
-						/* Ignored */}
-				}
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException e) {
-						/* Ignored */}
-				}
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						/* Ignored */}
-				}
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void savePersonalInfoHandler(ActionEvent event) throws IOException {
+	/**
+	 * savePersonalInfoHandler method creates or updates personal info record
+	 * @param event save button event object
+	 */
+	public void savePersonalInfoHandler(ActionEvent event) {
 
 		PersonalInfo info = new PersonalInfo();
 		info.setFirstName(firstNameField.getText());
@@ -191,11 +162,16 @@ public class PersonalInfoController extends EnhancedAlert{
 		info.setPhoneNumber(phoneNumberField.getText());
 		info.setEmailAddress(emailAddressField.getText());
 
-		BufferedImage bImage = SwingFXUtils.fromFXImage(avatarImageViewer.getImage(), null);
-		ByteArrayOutputStream s = new ByteArrayOutputStream();
-		ImageIO.write(bImage, "png", s);
-		byte[] res = s.toByteArray();
-		s.close();
+		byte[] imgBytes = null;
+		try {
+			BufferedImage bImg = SwingFXUtils.fromFXImage(avatarImageViewer.getImage(), null);
+			ByteArrayOutputStream bytesArrayStream = new ByteArrayOutputStream();
+			ImageIO.write(bImg, "png", bytesArrayStream);
+			imgBytes = bytesArrayStream.toByteArray();
+			bytesArrayStream.close();
+		}catch(IOException exc) {
+			exc.printStackTrace();
+		}
 		
 		if(info.getFirstName().isBlank() || info.getLastName().isBlank() || info.getEmailAddress().isBlank()|| info.getPhoneNumber().isBlank()
 				|| info.getPhysicalAddress().isBlank()) {
@@ -223,7 +199,7 @@ public class PersonalInfoController extends EnhancedAlert{
 					pstmt.setString(3, info.getEmailAddress());
 					pstmt.setString(4, info.getPhysicalAddress());
 					pstmt.setString(5, info.getPhoneNumber());
-					pstmt.setBytes(6, res);
+					pstmt.setBytes(6, imgBytes);
 					pstmt.executeUpdate();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -238,12 +214,6 @@ public class PersonalInfoController extends EnhancedAlert{
 					pstmt.setString(3, emailAddressField.getText());
 					pstmt.setString(4, physicalAddressField.getText());
 					pstmt.setString(5, phoneNumberField.getText());
-
-					BufferedImage bImg = SwingFXUtils.fromFXImage(avatarImageViewer.getImage(), null);
-					ByteArrayOutputStream bytesArrayStream = new ByteArrayOutputStream();
-					ImageIO.write(bImg, "png", bytesArrayStream);
-					byte[] imgBytes = s.toByteArray();
-					s.close();
 
 					pstmt.setBytes(6, imgBytes);
 
@@ -286,6 +256,9 @@ public class PersonalInfoController extends EnhancedAlert{
 
 	}
 	
+	/**
+	 * cancelPersonalInfoButtonHandler method reloads the personal info view
+	 */
 	public void cancelPersonalInfoButtonHandler() {
 		initialize();
 	}

@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Main.fxml view
+ * it mainly handles menu buttons and loads other fxml files
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
 
 import java.io.IOException;
 
@@ -12,22 +23,40 @@ import javafx.stage.Stage;
 
 public class MainController {
 	
+	/**
+	 * JavaFX Button object
+	 */
 	@FXML
 	private Button minimizeButton, closeButton, personalInfoButton, educationButton, skillsButton;
 
+	/**
+	 * JavaFX AnchorPane object
+	 */
 	@FXML
 	private AnchorPane mainContainer;
-	 
+	
+	/**
+	 * minimizeButtonHandler method to minimize the screen
+	 * @param event minimize button event
+	 */
 	public void minimizeButtonHandler(ActionEvent event){
 		Stage stage = (Stage) minimizeButton.getScene().getWindow();
 		stage.setIconified(true);
 	}
 	
+	/**
+	 * closeButtonHandler method to close the screen
+	 * @param event close button event
+	 */
 	public void closeButtonHandler(ActionEvent event){
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
 	
+	/**
+	 * personalInfoButtonHandler method loads PersonalInfo.fxml view
+	 * @param event close button event
+	 */
 	public void personalInfoButtonHandler(ActionEvent event) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../view/PersonalInfo.fxml"));
@@ -37,6 +66,10 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * educationButtonHandler method loads Education.fxml view
+	 * @param event close button event
+	 */
 	public void educationButtonHandler(ActionEvent event) {
 		try {
 			
@@ -48,6 +81,10 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * templatesButtonHandler method loads Templates.fxml view
+	 * @param event close button event
+	 */
 	public void templatesButtonHandler(ActionEvent event) {
 		try {
 			
@@ -59,6 +96,10 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * experienceButtonHandler method loads Experience.fxml view
+	 * @param event close button event
+	 */
 	public void experienceButtonHandler(ActionEvent event) {
 		try {
 			
@@ -70,6 +111,10 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * summaryButtonHandler method loads Summary.fxml view
+	 * @param event close button event
+	 */
 	public void summaryButtonHandler(ActionEvent event) {
 		try {
 			
@@ -81,6 +126,10 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * skillsButtonHandler method loads Skills.fxml view
+	 * @param event close button event
+	 */
 	public void skillsButtonHandler(ActionEvent event) {
 		try {
 			

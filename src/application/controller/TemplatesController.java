@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Templates.fxml view
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import application.extras.EnhancedAlert;
 import application.pdf.TemplateAPdfGenerator;
 import application.pdf.TemplateBPdfGenerator;
@@ -10,9 +21,17 @@ import javafx.scene.input.MouseEvent;
 
 public class TemplatesController extends EnhancedAlert{
 
+	/**
+	 * JavaFX ImageView object
+	 */
 	@FXML
 	private ImageView templateAImageView, templateBImageView;
 
+	/**
+	 * initialize method handles mouse click event for 
+	 * both image views and also gives animation to the 
+	 * image views when mouse enters or exists the image view
+	 */
 	@FXML
 	public void initialize() {
 

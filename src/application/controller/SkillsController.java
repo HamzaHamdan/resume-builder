@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Skills.fxml
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,32 +38,62 @@ import javafx.util.Callback;
 
 public class SkillsController extends EnhancedAlert{
 	
+	/**
+	 * constant to store number of items to display per page
+	 */
 	public static final int ITEMS_PER_PAGE = 4;
 	
+	/**
+	 * JavaFX Pagination object
+	 */
 	@FXML
 	private Pagination skillsPagination;
 	
+	/**
+	 * JavaFX Label object
+	 */
 	@FXML
 	private Label hiddenID;
 	
+	/**
+	 * JavaFX TextArea object
+	 */
 	@FXML
 	private TextArea skillDescField;
 	
+	/**
+	 * JavaFX Button object
+	 */
 	@FXML
 	private Button addSkillButton;
 	
+	/**
+	 * JavaFX TableView object
+	 */
 	@FXML
 	private TableView<Skill> skillsTableView;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Skill, String> skillColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Skill, Button> deleteActionColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Skill, Button> editActionColumn;
 	
+	/**
+	 * initialize method loads initial date for the skills view
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -92,6 +133,10 @@ public class SkillsController extends EnhancedAlert{
        
 	}
 	
+	/**
+	 * handleEditButtonAction handles edit button event
+	 * @param id record id to be edited
+	 */
 	private void handleEditButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		String query = "select id, skill from skills where id = "
@@ -110,6 +155,10 @@ public class SkillsController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * handleDeleteButtonAction handles delete button event
+	 * @param id record id to be deleted
+	 */
 	private void handleDeleteButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		
@@ -131,6 +180,14 @@ public class SkillsController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * createPage method takes skills records as input
+	 * and page number, then returns the list of skills
+	 * records for the entered page
+	 * @param pageIndex page number
+	 * @param skillsList skills records
+	 * @return skillsTableView tabulated skills records
+	 */
 	public TableView<Skill> createPage(int pageIndex, ObservableList<Skill> skillsList) {
 
 		ObservableList<Skill> subList = null;
@@ -155,6 +212,11 @@ public class SkillsController extends EnhancedAlert{
         return skillsTableView;
     }
 	
+	/**
+	 * addSkillButtonHandler method saves changes to 
+	 * already existing records or creates new ones
+	 * @param event button events object
+	 */
 	public void addSkillButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
 		

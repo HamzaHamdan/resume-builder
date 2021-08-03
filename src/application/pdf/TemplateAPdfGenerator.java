@@ -1,5 +1,16 @@
 package application.pdf;
 
+/*
+ * This class handles template A generation request
+ * 
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -18,9 +29,26 @@ import application.model.Summary;
 
 public class TemplateAPdfGenerator extends PdfGeneratorDao{
 
+	/** 
+	* date format pattern
+	* 
+	*/
 	private String schoolDatesPattern = "MM/dd/yyyy";
+	
+	/** 
+	* SimpleDateFormat object to format dates 
+	* according to the pattern in schoolDatesPattern
+	* 
+	*/
 	private SimpleDateFormat schoolDatesFormatter = new SimpleDateFormat(schoolDatesPattern);
 
+	/** 
+	* generatePdfFile method generates PDF file 
+	* @return name of the generated PDF file
+	* @throws SQLException if any database related issue occur
+	* @throws Exception if any other type of errors occur
+	* 
+	*/
 	public String generatePdfFile() throws SQLException, Exception {
 
 		String fileName = fileNameGenerator();
@@ -294,6 +322,12 @@ public class TemplateAPdfGenerator extends PdfGeneratorDao{
 		return fileName;
 	}
 
+	/** 
+	* fileNameGenerator method generates 
+	* a name for the generated PDF file 
+	* @return name of the generated PDF file
+	* 
+	*/
 	private String fileNameGenerator() {
 		String datePattern = "MM-dd-yyyy";
 		SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);

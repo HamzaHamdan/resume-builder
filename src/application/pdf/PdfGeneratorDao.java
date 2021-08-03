@@ -1,5 +1,18 @@
 package application.pdf;
 
+/*
+ * This class will be extended by all templates classes
+ * and it contains the code to establish connection to the 
+ * SQLite DB and retrieve data from it
+ * 
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +29,12 @@ import javafx.scene.control.Button;
 
 public class PdfGeneratorDao {
 	
+	/** 
+	* getPersonalInfoRecord method connects to 
+	* the database and collects personal info record  
+	* @return PersonalInfo
+	* 
+	*/
 	public PersonalInfo getPersonalInfoRecord() {
 		Connection connection = null;
 		Statement stmt = null;
@@ -36,6 +55,12 @@ public class PdfGeneratorDao {
 		return info;
 	}
 	
+	/** 
+	* getPictureBytesRecord method connects to 
+	* the database and collects personal info image  
+	* @return byte[] of the stored image
+	* 
+	*/
 	public byte[] getPictureBytesRecord() {
 		Connection connection = null;
 		Statement stmt = null;
@@ -55,6 +80,12 @@ public class PdfGeneratorDao {
 		return imgData;
 	}
 	
+	/** 
+	* getEducationRecords method connects to 
+	* the database and collects education records
+	* @return ArrayList of the stored education records
+	* 
+	*/
 	public ArrayList<Education> getEducationRecords() {
 		
 		Connection connection = null;
@@ -78,6 +109,12 @@ public class PdfGeneratorDao {
 		
 	}
 	
+	/** 
+	* getExperienceRecords method connects to 
+	* the database and collects experience records
+	* @return ArrayList of the stored experience records
+	* 
+	*/
 	public ArrayList<Experience> getExperienceRecords() {
 		
 		Connection connection = null;
@@ -100,6 +137,12 @@ public class PdfGeneratorDao {
 		return experienceList;
 	}
 	
+	/** 
+	* getSkillsRecords method connects to 
+	* the database and collects skill records
+	* @return ArrayList of the stored skill records
+	* 
+	*/
 	public ArrayList<Skill> getSkillsRecords() {
 		
 		Connection connection = null;
@@ -122,6 +165,12 @@ public class PdfGeneratorDao {
 		
 	}
 	
+	/** 
+	* getSummaryRecord method connects to 
+	* the database and collects summary record
+	* @return Summary object
+	* 
+	*/
 	public Summary getSummaryRecord() {
 		Connection connection = null;
 		Statement stmt = null;

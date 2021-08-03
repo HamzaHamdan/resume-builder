@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Experience.fxml view
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -27,58 +38,102 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 public class ExperienceController extends EnhancedAlert{
 	
+	/**
+	 * constant to store number of items to display per page
+	 */
 	public static final int ITEMS_PER_PAGE = 4;
 	
+	/**
+	 * JavaFX Pagination object
+	 */
 	@FXML
 	private Pagination experiencePagination;
 	
+	/**
+	 * JavaFX TextField object
+	 */
 	@FXML
 	private TextField companyNameField, positionField;
 	
+	/**
+	 * JavaFX Label object
+	 */
 	@FXML
 	private Label hiddenID;
 	
+	/**
+	 * JavaFX DatePicker object
+	 */
 	@FXML
 	private DatePicker experienceFromDateField, experienceToDateField;
 	
+	/**
+	 * JavaFX TextArea object
+	 */
 	@FXML
 	private TextArea experienceDescField;
 	
+	/**
+	 * JavaFX Button object
+	 */
 	@FXML
 	private Button addExperienceButton;
 	
-	@FXML
-	private AnchorPane mainContainer;
-	
+	/**
+	 * JavaFX TableView object
+	 */
 	@FXML
 	private TableView<Experience> experienceTableView;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, String> companyNameColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, LocalDate> experienceFromDateColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, LocalDate> experienceToDateColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, String> positionColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, String> descColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, Button> deleteActionColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Experience, Button> editActionColumn;
 	
+	/**
+	 * initialize method loads initial date for the experience view
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -123,6 +178,10 @@ public class ExperienceController extends EnhancedAlert{
        
 	}
 	
+	/**
+	 * handleEditButtonAction handles edit button event
+	 * @param id record id to be edited
+	 */
 	private void handleEditButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		String query = "select id, company_name, from_Date, to_date, position, description from experience where id = "
@@ -145,6 +204,10 @@ public class ExperienceController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * handleDeleteButtonAction handles delete button event
+	 * @param id record id to be deleted
+	 */
 	private void handleDeleteButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		
@@ -166,6 +229,14 @@ public class ExperienceController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * createPage method takes experience records as input
+	 * and page number, then returns the list of experience
+	 * records for the entered page
+	 * @param pageIndex page number
+	 * @param experienceList experience history records
+	 * @return experienceTableView tabulated experience history records
+	 */
 	public TableView<Experience> createPage(int pageIndex, ObservableList<Experience> experienceList) {
 		
 		ObservableList<Experience> subList = null;
@@ -198,6 +269,11 @@ public class ExperienceController extends EnhancedAlert{
         return experienceTableView;
     }
 	
+	/**
+	 * addExperienceButtonHandler method saves changes to 
+	 * already existing records or creates new ones
+	 * @param event button events object
+	 */
 	public void addExperienceButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
 		

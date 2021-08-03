@@ -1,5 +1,16 @@
 package application.controller;
 
+/*
+ * This is the controller class for Education.fxml view
+ *
+ * MyUTSA ID: gos049
+ * Assignment: Resume Builder Project
+ * Class: CS-3443-01T-Summer-2021-Application Programming
+ * 
+ * @author: Hamza Hamdan
+ * 
+ */
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -28,66 +39,119 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 public class EducationController extends EnhancedAlert{
 	
+	/**
+	 * Degree Type combo box initial data stored in an observable list object
+	 */
 	ObservableList<String> degreeTypeList = FXCollections.observableArrayList("Bachelor's Degree", "Master's Degree", "Training");
 	
+	/**
+	 * constant to store number of items to display per page
+	 */
 	public static final int ITEMS_PER_PAGE = 4;
 	
+	/**
+	 * JavaFX Pagination object
+	 */
 	@FXML
 	private Pagination educationPagination;
 	
+	/**
+	 * JavaFX ComboBox object
+	 */
 	@FXML
 	private ComboBox<String> degreeTypeCombo;
 	
+	/**
+	 * JavaFX TextField object
+	 */
 	@FXML
 	private TextField schoolNameField, degreeNameField;
 	
+	/**
+	 * JavaFX Label object
+	 */
 	@FXML
 	private Label hiddenID;
 	
+	/**
+	 * JavaFX DatePicker object
+	 */
 	@FXML
 	private DatePicker educationFromDateField, educationToDateField;
 	
+	/**
+	 * JavaFX TextArea object
+	 */
 	@FXML
 	private TextArea educationDescField;
 	
+	/**
+	 * JavaFX Button object
+	 */
 	@FXML
 	private Button addEducationButton;
 	
-	@FXML
-	private AnchorPane mainContainer;
-	
+	/**
+	 * JavaFX TableView object
+	 */
 	@FXML
 	private TableView<Education> educationTableView;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, String> schoolNameColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, LocalDate> degreeFromDateColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, LocalDate> degreeToDateColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, String> degreeTypeColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, String> degreeNameColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, String> descColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, Button> deleteActionColumn;
 	
+	/**
+	 * JavaFX TableColumn object
+	 */
 	@FXML
 	private TableColumn<Education, Button> editActionColumn;
 	
+	/**
+	 * initialize method loads initial date for the education view
+	 */
 	@FXML
 	public void initialize() {
 		
@@ -134,6 +198,10 @@ public class EducationController extends EnhancedAlert{
        
 	}
 	
+	/**
+	 * handleEditButtonAction handles edit button event
+	 * @param id record id to be edited
+	 */
 	private void handleEditButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		String query = "select id, school_name, from_Date, to_date, degree_type, degree_name, description from education where id = "
@@ -161,6 +229,10 @@ public class EducationController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * handleDeleteButtonAction handles delete button event
+	 * @param id record id to be deleted
+	 */
 	private void handleDeleteButtonAction(long id) {
 		Connection connection = ConnectionFactory.getConnection();
 		
@@ -182,6 +254,14 @@ public class EducationController extends EnhancedAlert{
 
 	}
 
+	/**
+	 * createPage method takes education records as input
+	 * and page number, then returns the list of education
+	 * records for the entered page
+	 * @param pageIndex page number
+	 * @param educationList education history records
+	 * @return educationTableView tabulated education history records
+	 */
 	public TableView<Education> createPage(int pageIndex, ObservableList<Education> educationList) {
 		
 		ObservableList<Education> subList = null;
@@ -216,6 +296,11 @@ public class EducationController extends EnhancedAlert{
         return educationTableView;
     }
 	
+	/**
+	 * addEducationButtonHandler method saves changes to 
+	 * already existing records or creates new ones
+	 * @param event button events object
+	 */
 	public void addEducationButtonHandler(ActionEvent event) {
 		Connection connection = ConnectionFactory.getConnection();
 		
